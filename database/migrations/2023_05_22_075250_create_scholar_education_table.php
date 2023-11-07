@@ -28,6 +28,7 @@ return new class extends Migration
             $table->foreign('award_id')->references('id')->on('list_dropdowns')->onDelete('cascade');
             $table->year('graduated_year')->nullable();
             $table->json('information');
+            $table->boolean('is_regular')->default(1);
             $table->boolean('is_completed')->default(0);
             $table->boolean('is_enrolled')->default(0);
             $table->boolean('is_shiftee')->default(0);

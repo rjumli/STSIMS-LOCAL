@@ -17,6 +17,7 @@ class ScholarEducation extends Model
         'level_id',
         'award_id',
         'graduated_year',
+        'is_regular',
         'is_completed',
         'is_enrolled',
         'is_shiftee',

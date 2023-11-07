@@ -42,12 +42,6 @@
                         <span data-key="t-students">Monitoring2</span>
                     </Link>
                 </li> 
-                <!-- <li class="nav-item">
-                    <Link class="nav-link menu-link" :class="{'active': $page.component.startsWith('Modules/Course') }" href="/courses">
-                        <i class='bx bxs-graduation'></i>
-                        <span data-key="t-students">Course</span>
-                    </Link>
-                </li>      -->
                 <li class="nav-item">
                     <Link class="nav-link menu-link" :class="{'active': $page.component.startsWith('Modules/Schools') }" href="/schools">
                         <i class='bx bxs-school'></i>
