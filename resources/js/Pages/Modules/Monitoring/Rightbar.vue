@@ -13,12 +13,12 @@
             </div>
         </b-col>
     </b-row>
-    <div class="mt-3 pt-2">
+    <div class="mt-2 pt-2">
         <b-progress class="progress-lg rounded-pill">
             <b-progress-bar  v-for="(list,index) in modifiedItems" v-bind:key="index" :value="list.status_count" :variant="list.color" class="rounded-0" />
         </b-progress>
     </div>
-    <div class="mt-3 pt-2">
+    <div class="mt-2 pt-2">
         <div class="d-flex mb-2" v-for="(list,index) in modifiedItems" v-bind:key="index">
             <div class="flex-grow-1">
                 <p class="text-truncate text-muted fs-14 mb-0">

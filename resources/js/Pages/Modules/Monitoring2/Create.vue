@@ -9,7 +9,7 @@
          </div>
 
         <div class="file-manager-content p-3 w-100 pb-0" style="height: calc(100vh - 180px);" ref="box">
-s
+
             <!-- <div class="row mb-3">
                 <div class="col-sm-6 col-lg-3">
                     <div class="p-1 border border-dashed rounded">

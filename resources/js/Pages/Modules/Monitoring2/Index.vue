@@ -4,12 +4,11 @@
     <div class="chat-wrapper d-lg-flex gap-1 mx-n4 mt-n4 p-1">
         <div class="file-manager-sidebar">
             <div class="p-4 d-flex flex-column h-100">
-
+                <Sidebar/>
             </div>
          </div>
 
         <div class="file-manager-content p-3 w-100 pb-0" style="height: calc(100vh - 180px);" ref="box">
-s
             <!-- <div class="row mb-3">
                 <div class="col-sm-6 col-lg-3">
                     <div class="p-1 border border-dashed rounded">
@@ -92,10 +91,11 @@ s
     </div>
 </template>
 <script>
+import Sidebar from './Sidebar.vue';
 import PageHeader from "@/Shared/Components/PageHeader.vue";
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
-    components: { PageHeader, Pagination },
+    components: { PageHeader, Pagination, Sidebar },
     data() {
         return {
             currentUrl: window.location.origin,

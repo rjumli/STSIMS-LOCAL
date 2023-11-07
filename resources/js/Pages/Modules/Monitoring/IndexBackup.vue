@@ -8,8 +8,8 @@
             </div>
          </div>
 
-        <div class="file-manager-content p-3 pb-0 w-100">
-            <!-- <div class="card p-4 border shadow-none mb-4 mt-0">
+        <div class="file-manager-content p-3 pb-0" style="height: calc(100vh - 180px); width: 720px;" ref="box">
+            <div class="card p-4 border shadow-none mb-4 mt-0">
                 <div class="row g-0 text-center mt-n4 mb-n4">
                     <div class="col-sm-4 col-6" v-for="(list,index) in checking" v-bind:key="index">
                         <div class="p-3 border border-dashed border-start-0">
@@ -18,8 +18,7 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
-            
+            </div>
             <div class="col-lg">
                 <div class="input-group mb-1">
                     <span class="input-group-text"><i class="ri-search-line search-icon"></i></span>
@@ -37,28 +36,32 @@
                         <div class="btn-content"><i class="ri-search-eye-line align-bottom me-1"></i> Filter </div>
                     </button>
                 </div>
-                 <!-- <ul class="treding-keywords list-inline mb-0 mt-2 fs-11">
+                 <ul class="treding-keywords list-inline mb-0 mt-2 fs-11">
                     <li class="list-inline-item text-danger fw-semibold"><i
                             class="ri-search-eye-line align-middle"></i> Filters:</li>
                     <li class="list-inline-item">
                         <b-link href="#">Testing</b-link>
                     </li>
-                </ul> -->
+                </ul>
             </div>
             <hr class="text-muted mb-0 mt-3"/>
             <div class="table-responsive">
-                <table class="table table-nowrap align-middle">
+                <table class="table table-slide table-nowrap align-middle">
                     <thead class="table-light fs-11">
                         <tr>
-                            <th width="70%"><span style="margin-left: 40px;">Scholar</span></th>
-                            <th width="20%" class="text-center">Status</th>
-                            <th width="10%" class="text-center"></th>
+                            <th class="fixed-column" style="width: 1000px;">Name</th>
+                            <th class="text-center" width="700px;">School</th>
+                            <th class="text-center" width="700px;">Course</th>
+                            <th class="text-center" width="700px;">Level</th>
+                            <th class="text-center" width="700px;">Awarded Year</th>
+                            <th class="text-center fixed-column" style="width: 500px;">Status</th>
+                            <th class="text-center fixed-column" style="width: 500px;"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="(user,index) in lists" v-bind:key="index">
-                            <td>
-                                <div class="d-flex align-items-center ms-n2">
+                            <td class="fixed-column">
+                                 <div class="d-flex align-items-center">
                                     <div class="flex-shrink-0 chat-user-img online user-own-img align-self-center me-3 ms-0">
                                         <img :src="currentUrl+'/images/avatars/'+user.profile.avatar" class="rounded-circle avatar-xs" alt="">
                                         <span class="user-status" :style="(user.profile.sex == 'Male') ? 'background-color: #5cb0e5;' : 'background-color: #e55c7f;'"></span>
@@ -77,25 +80,25 @@
                                 <h5 class="fs-12 mb-0 text-dark" v-b-tooltip.hover :title="user.education.school.name">{{user.education.school.shortcut}}</h5>
                                 <p class="fs-11 text-muted mb-0">{{user.education.course.name}}</p>
                             </td> -->
-                            <!-- <td class="text-center fs-11">{{user.education.school.shortcut}}</td>
+                            <td class="text-center fs-11">{{user.education.school.shortcut}}</td>
                             <td class="text-center fs-11">{{user.education.course.name}}</td>
                             <td class="text-center fs-11">{{(user.education.level != 'n/a') ? user.education.level.others : user.education.level}}</td>
-                            <td class="text-center fs-11">{{user.awarded_year}}</td> -->
+                            <td class="text-center fs-11">{{user.awarded_year}}</td>
                             <!-- <td class="text-center fs-11">{{user.category}}</td>
                             <td class="text-center fs-11">{{user.program}}</td>
                             <td class="text-center fs-11">{{user.subprogram}}</td> -->
                             <td class="text-center fs-11">
                                 <span :class="'badge '+user.status.color+' '+user.status.others">{{user.status.name}}</span>
                             </td>
-                            <td class="text-end">
+                            <td class="text-end fixed-column">
                                 <b-button @click="showUpdate(user,'status',index,'ongoing')" variant="soft-warning" v-b-tooltip.hover title="Update Status" size="sm" class="remove-list me-1"><i class="ri-heart-fill align-bottom"></i></b-button>
-                               <b-button @click="view(user)" variant="soft-primary" v-b-tooltip.hover title="View Scholar" size="sm" class="remove-list me-n2"><i class="ri-eye-fill align-bottom"></i></b-button>
+                               <b-button @click="view(user)" variant="soft-primary" v-b-tooltip.hover title="View Scholar" size="sm" class="remove-list me-1"><i class="ri-eye-fill align-bottom"></i></b-button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <Pagination class="ms-2 me-2" v-if="meta" @fetch="fetchScholars" :lists="lists.length" :links="links" :pagination="meta" />
+                <Pagination class="ms-2 me-2" v-if="meta" @fetch="fetchScholars" :lists="lists.length" :links="links" :pagination="meta" />
         </div>
 
         <div class="file-manager-sidebar">
@@ -223,4 +226,27 @@ export default {
     max-width: 450px;
     height: calc(100vh - 180px);
 }
+.table-slide {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+.table-slide th:first-child, .table td:first-child {
+    position: sticky;
+    left: 0;
+}
+.table-slide th:last-child, .table td:last-child {
+    position: sticky;
+    right: 0;
+}
+.table-slide td:first-child {
+    position: sticky;
+    left: 0;
+    background-color: #ffffff;
+}
+.table-slide td:last-child {
+    position: sticky;
+    right: 0;
+    background-color: #ffffff;
+}
+
 </style>

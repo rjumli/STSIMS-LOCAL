@@ -28,7 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/insights', App\Http\Controllers\InsightController::class);
     Route::resource('/accounting', App\Http\Controllers\AccountingController::class);
     Route::resource('/monitoring', App\Http\Controllers\MonitoringController::class);
-    Route::resource('/monitoring2', App\Http\Controllers\Monitoring2Controller::class);
+    // Route::resource('/monitoring2', App\Http\Controllers\Monitoring2Controller::class);
 });
 
 require __DIR__.'/auth.php';
