@@ -99,7 +99,7 @@
         </div>
 
         <div class="file-manager-sidebar">
-            <div class="p-4 d-flex flex-column h-100">
+            <div class="p-4 d-flex flex-column h-100">test
                 <Rightbar :statuses="statuses1" :released="released"/>
             </div>
          </div>
