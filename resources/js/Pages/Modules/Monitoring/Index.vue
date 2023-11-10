@@ -3,7 +3,7 @@
     <PageHeader :title="title" :items="items" />
     <div class="chat-wrapper d-lg-flex gap-1 mx-n4 mt-n4 p-1">
         <div class="file-manager-sidebar">
-            <div class="p-4 d-flex flex-column h-100">
+            <div class="p-4 d-flex flex-column h-100" style="overflow: auto;">
                 <Sidebar :counts="counts" :semester_year="semester_year" :dropdowns="dropdowns"/>
             </div>
          </div>
@@ -99,7 +99,11 @@
         </div>
 
         <div class="file-manager-sidebar">
+<<<<<<< Updated upstream
             <div class="p-4 d-flex flex-column h-100">test
+=======
+            <div class="p-4 d-flex flex-column h-100" style="overflow: auto;">
+>>>>>>> Stashed changes
                 <Rightbar :statuses="statuses1" :released="released"/>
             </div>
          </div>

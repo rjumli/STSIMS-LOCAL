@@ -1,6 +1,11 @@
 <template>
     <b-modal v-model="showModal" title="Unenrolled Scholars" :hide-footer="true" style="--vz-modal-width: 700px;" header-class="p-3 bg-light" class="v-modal-custom" modal-class="zoomIn" centered>    
         <template v-if="!viewScholar">
+            <b-alert show variant="danger" class="alert-label-icon rounded-label fade show" role="alert">
+                <i class="ri-error-warning-line label-icon"></i><strong>Notify</strong> - Send email and SMS to the scholars
+                <b-button variant="light" class="float-end" style="margin-top:-4px;" size="sm">Notify Now</b-button>
+            </b-alert>
+
             <input class="form-control mb-3" v-model="keyword" v-if="scholars != 0" type="text" placeholder="Search Scholar">
             <hr class="text-muted"/>
             <div class="table-responsive">

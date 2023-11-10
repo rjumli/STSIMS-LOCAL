@@ -136,7 +136,7 @@
                     </div>
                 </div>
             </li>
-            <li @click="openUnenrolled(unenrolled)">
+            <!-- <li @click="openUnenrolled(unenrolled)">
                 <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">
                         <div class="avatar-xs">
@@ -164,7 +164,7 @@
                         </div>
                     </div>
                 </div>
-            </li> 
+            </li>  -->
             <li @click="openMissed(missed)">
                 <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">
@@ -194,6 +194,35 @@
                     </div>
                 </div>
             </li>
+            <li @click="openUnenrolled(unenrolled)">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <div class="avatar-xs">
+                            <div class="avatar-title rounded bg-soft-info text-info">
+                            <i class="ri-question-fill fs-17"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h5 class="mb-0 fs-13">Academic Deficiency</h5>
+                        <p class="mb-0 fs-12 text-muted">Scholars with academic deficiencies</p>
+                    </div>
+                    <div class="avatar-group">
+                        <div class="avatar-group-item" v-for="user in unenrolled.lists" v-bind:key="user.id">
+                            <a class="d-inline-block" v-b-tooltip.hover :title="user.firstname+' '+user.lastname">
+                                <img :src="currentUrl+'/images/avatars/'+user.avatar" alt="" class="rounded-circle avatar-xxs">
+                            </a>
+                        </div>
+                        <div class="avatar-group-item" v-if="unenrolled.meta.total > 5"> 
+                            <a class="" href="javascript: void(0);" target="_self" v-b-tooltip.hover :title="unenrolled.meta.total - 5+' more scholars'">
+                                <div class="avatar-xxs">
+                                    <span class="avatar-title rounded-circle bg-success text-white">+</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li> 
              <li @click="openTermination(scholarsTermination)"> 
                 <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">

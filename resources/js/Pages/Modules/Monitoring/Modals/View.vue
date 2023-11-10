@@ -101,9 +101,9 @@
             </div> 
             <div class="col-md-9">
                 <div class="border-start p-4 h-100 d-flex flex-column">
-                   
+                    <Home :is_enrolled="user.education.school.is_enrolled" ref="home"/>
                
-                        <ul class="nav nav-pills nav-justified nav-custom nav-custom-light mb-3 mt-n3" role="tablist">
+                        <!-- <ul class="nav nav-pills nav-justified nav-custom nav-custom-light mb-3 mt-n3" role="tablist">
                             <li class="nav-item">
                                 <b-link class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">
                                     Home
@@ -130,12 +130,10 @@
                                 <Home ref="home"/>
                             </div>
                             <div class="tab-pane" id="benefits" role="tabpanel">
-                                <!-- <Benefits ref="benefits"/> -->
                             </div>
                             <div class="tab-pane" id="enrollments" role="tabpanel">
-                                <!-- <Enrollments ref="enrollment"/> -->
                             </div>
-                        </div>
+                        </div> -->
                     
                 
                 </div>

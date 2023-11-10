@@ -124,88 +124,92 @@
             <b-button @click="create('ok')" variant="primary" :disabled="(option) ? false : true " block>Confirm</b-button>
         </template>
     </b-modal>
+    <Confirm ref="confirm"/>
 </template>
-
 <script>
-    export default {
-        data() {
-            return {
-                currentUrl: window.location.origin,
-                showModal: false,
-                scholars: [],
-                scholar: '',
-                itemsPerPage: 5,
-                currentPage: 1,
-                filteredArray: [],
-                keyword: '',
-                option: '',
-                viewScholar: false
+import Confirm from '../Confirm.vue';
+export default {
+    components : { Confirm },
+    data() {
+        return {
+            currentUrl: window.location.origin,
+            showModal: false,
+            scholars: [],
+            scholar: '',
+            itemsPerPage: 5,
+            currentPage: 1,
+            filteredArray: [],
+            keyword: '',
+            option: '',
+            viewScholar: false
+        }
+    },
+    watch: {
+        keyword(newVal){
+            this.search(newVal)
+        }
+    },
+    computed: {
+        totalPages() {
+            return (this.scholars) ? Math.ceil(this.scholars.length / this.itemsPerPage) : '';
+        },
+        paginatedData() {
+            const start = (this.currentPage - 1) * this.itemsPerPage;
+            const end = start + this.itemsPerPage;
+            return this.scholars.slice(start, end);
+        },
+    },
+    methods: {
+        show(data) {
+            this.viewScholar = false;
+            this.option = '';
+            this.scholars = data;
+            this.showModal = true;
+        },
+        create(){
+            let name = this.scholar.scholar.firstname+' '+this.scholar.scholar.lastname;
+            this.$refs.confirm.show(this.option,name);
+            // this.isLoading = true;
+            // axios.post(this.currentUrl + '/monitoring', {
+            //     enrollment_id: this.scholar.id,
+            //     scholar_id: this.scholar.scholar.id,
+            //     type: 'termination',
+            //     option: this.option
+            // })
+            // .then(response => {
+            //     this.isLoading = false;
+            //     this.hide();
+            // })
+            // .catch(err => console.log(err));
+        },
+        nextPage() {
+            if (this.currentPage < this.totalPages) {
+                this.currentPage++;
             }
         },
-        watch: {
-            keyword(newVal){
-                this.search(newVal)
+        previousPage() {
+            if (this.currentPage > 1) {
+                this.currentPage--;
             }
         },
-        computed: {
-            totalPages() {
-                return (this.scholars) ? Math.ceil(this.scholars.length / this.itemsPerPage) : '';
-            },
-            paginatedData() {
-                const start = (this.currentPage - 1) * this.itemsPerPage;
-                const end = start + this.itemsPerPage;
-                return this.scholars.slice(start, end);
-            },
-        },
-        methods: {
-            show(data) {
-                this.viewScholar = false;
-                this.option = '';
-                this.scholars = data;
-                this.showModal = true;
-            },
-            create(){
-                this.isLoading = true;
-                axios.post(this.currentUrl + '/monitoring', {
-                    enrollment_id: this.scholar.id,
-                    scholar_id: this.scholar.scholar.id,
-                    type: 'termination',
-                    option: this.option
-                })
-                .then(response => {
-                    this.isLoading = false;
-                    this.hide();
-                })
-                .catch(err => console.log(err));
-            },
-            nextPage() {
-                if (this.currentPage < this.totalPages) {
-                    this.currentPage++;
-                }
-            },
-            previousPage() {
-                if (this.currentPage > 1) {
-                    this.currentPage--;
-                }
-            },
-            gotoPage(pageNumber) {
-                if (pageNumber >= 1 && pageNumber <= this.totalPages) {
-                    this.currentPage = pageNumber;
-                }
-            },
-            search(data) {
-                this.filteredArray = this.scholars.filter(item =>
-                    item.scholar.lastname.toLowerCase().includes(data.toLowerCase())
-                );
-            },
-            view(data){
-                this.scholar= data;
-                this.option = '';
-                this.viewScholar = true;
-            },
-            hide(){
-                this.showModal = false;
+        gotoPage(pageNumber) {
+            if (pageNumber >= 1 && pageNumber <= this.totalPages) {
+                this.currentPage = pageNumber;
             }
+        },
+        search(data) {
+            this.filteredArray = this.scholars.filter(item =>
+                item.scholar.lastname.toLowerCase().includes(data.toLowerCase())
+            );
+        },
+        view(data){
+            this.scholar= data;
+            this.option = '';
+            this.viewScholar = true;
+        },
+        hide(){
+            this.showModal = false;
         }
     }
+}
 </script>
