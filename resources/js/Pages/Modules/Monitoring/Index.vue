@@ -8,7 +8,8 @@
             </div>
          </div>
 
-        <div class="file-manager-content p-3 pb-0 w-100">
+        <div class="file-manager-content p-3 pb-0 w-100" ref="myDiv">
+             <button @click="getDivHeight">Get Div Height</button>
             <!-- <div class="card p-4 border shadow-none mb-4 mt-0">
                 <div class="row g-0 text-center mt-n4 mb-n4">
                     <div class="col-sm-4 col-6" v-for="(list,index) in checking" v-bind:key="index">
@@ -99,11 +100,7 @@
         </div>
 
         <div class="file-manager-sidebar">
-<<<<<<< Updated upstream
-            <div class="p-4 d-flex flex-column h-100">test
-=======
             <div class="p-4 d-flex flex-column h-100" style="overflow: auto;">
->>>>>>> Stashed changes
                 <Rightbar :statuses="statuses1" :released="released"/>
             </div>
          </div>
@@ -217,7 +214,14 @@ export default {
         refresh(){
             this.subfilters = [];
             this.fetchScholars();
-        }
+        },
+        getDivHeight() {
+           const myDivElement = this.$refs.myDiv;
+
+        // Retrieve the height property
+        const height = myDivElement.clientHeight;
+         console.log('Height of the div:', height);
+        },
     }
 }
 </script>

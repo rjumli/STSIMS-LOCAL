@@ -51,8 +51,9 @@
         <div class="p-2 border border-dashed rounded">
             <div class="d-flex align-items-center">
                 <div class="avatar-sm me-2">
-                    <div class="avatar-title rounded bg-transparent text-primary fs-24"><i
-                            class="ri-inbox-archive-fill"></i></div>
+                    <div class="avatar-title rounded bg-transparent text-primary fs-24">
+                        <i class="ri-wallet-3-fill"></i>
+                    </div>
                 </div>
                 <div class="flex-grow-1">
                     <p class="text-muted fs-11 mb-1">Total Received :</p>
@@ -62,57 +63,41 @@
         </div>
     </div>
 </div>
-<!-- <div class="mb-4">
- <ul class="nav nav-pills nav-justified nav-custom nav-custom-light" role="tablist">
-    <li class="nav-item">
-        <b-link class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">
-            Home
-        </b-link>
-    </li>
-    <li class="nav-item">
-        <b-link class="nav-link" data-bs-toggle="tab" href="#benefits" role="tab">
-            Financial Benefits
-        </b-link>
-    </li>
-    <li class="nav-item">
-        <b-link class="nav-link" data-bs-toggle="tab" href="#enrollments" role="tab">
-            Enrollments
-        </b-link>
-    </li>
-    <li class="nav-item">
-        <b-link class="nav-link" data-bs-toggle="tab" href="#nav-light-messages" role="tab">
-            Employment History
-        </b-link>
-    </li>
-</ul>
-</div> -->
+<div class="mb-3 mt-n2">
+    <ul class="nav nav-pills nav-custom nav-custom-light small" role="tablist">
+        <li class="nav-item">
+            <b-link class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">
+                Home
+            </b-link>
+        </li>
+        <li class="nav-item">
+            <b-link class="nav-link" data-bs-toggle="tab" href="#benefits" role="tab">
+                Financial Status
+            </b-link>
+        </li>
+    </ul>
+</div>
 <hr class="text-muted mt-n1"/>
     <table class="table tablez table-bordered table-nowrap align-middle mb-0">
         <thead class="table-light">
             <tr class="fs-11">
-                <th class="text-center" width="4%">#</th>
-                <th width="20%">Academic Year</th>
+                <th class="text-center" width="5%">#</th>
+                <th class="text-center" width="20%">Academic Year</th>
                 <th class="text-center" width="20%">Level</th>
                 <th class="text-center" width="10%">No. of Fails</th>
                 <th class="text-center" width="15%">Grades Submitted</th>
-                <!-- <th class="text-center" width="15%">Enrollment Status</th> -->
                 <th class="text-center" width="15%">Benefits Received</th>
                 <th class="text-center" width="15%">Status</th>
-                <!-- <th class="text-center" width="15%">Benefit Status</th> -->
                 <th></th>
             </tr>
         </thead> 
         <tbody>
             <tr class="font-size-11" v-for="(list,index) in enrollments" v-bind:key="index">
                 <td class="text-center">{{index+1}}</td>
-                <td class="fs-12">{{list.semester.academic_year}} <span class="text-muted">| {{list.semester.semester.name}}</span></td>
+                <td class="text-center fs-12">{{list.semester.academic_year}} <span class="text-muted">| {{list.semester.semester.name}}</span></td>
                 <td class="text-center fs-12">{{list.level}}</td>
                 <td class="text-center fs-12">{{check(list.grades)}}</td>
                 <td class="text-center fs-12">{{check3(list.grades)}}</td>
-                <!-- <td class="text-center">
-                    <span v-if="!list.is_clear" class="badge bg-danger">Incomplete</span>
-                    <span v-else class="badge bg-success">Cleared</span>
-                </td> -->
                 <td class="text-center fs-12">{{check2(list.benefits)}}</td>
                 <td class="text-center">
                     <span v-if="!list.is_completed"><i class="text-danger ri-close-circle-fill" v-b-tooltip.hover title="Grades and Benefits not completed"></i></span>
@@ -120,10 +105,10 @@
                 </td>
                 <td>
                     <button @click="viewGrades(list)" class="btn btn-sm btn-label me-1" :class="(list.is_grades_completed == 1) ? 'btn-success' : 'btn-light' " type="button">
-                        <div class="btn-content"><i class="ri-list-check label-icon align-middle fs-12 me-2"></i>View Grades</div>
+                        <div class="btn-content"><i class="ri-eye-line label-icon align-middle fs-12 me-2"></i>Grades</div>
                     </button>
                     <button @click="viewBenefits(list)" class="btn btn-sm btn-label" :class="(list.is_benefits_released == 1) ? 'btn-success' : 'btn-light' " type="button">
-                        <div class="btn-content"><i class="ri-eye-line label-icon align-middle fs-12 me-2"></i>View Benefits</div>
+                        <div class="btn-content"><i class="ri-eye-line label-icon align-middle fs-12 me-2"></i>Benefits</div>
                     </button>
                 </td>
             </tr>

@@ -39,65 +39,117 @@
             <div class="col-md-12"><hr /></div>
             <div class="col-md-3">
                 <div class="row">
+                    <div class="col-md-12 mt-0">
+                        <!-- <hr class="text-muted"/> -->
+                        <span class="fw-semibold fs-12">Scholar Information</span>
+                        <hr class="text-muted"/>
+                    </div>
                     <div class="col-md-12">
-                        <div class="d-flex mt-1">
+                        <div class="d-flex mt-0">
                             <div class="flex-shrink-0 avatar-xs align-self-center me-3">
                                 <div class="avatar-title bg-light rounded-circle fs-16 text-primary">
-                                    <i class="ri-service-line"></i>
+                                    <i class="ri-service-fill"></i>
                                 </div>
                             </div>
                             <div class="flex-grow-1 overflow-hidden">
-                                <p class="mb-1">Status :</p> <span :class="'badge '+user.status.color+' '+user.status.others">{{user.status.name}}</span>
+                                <p class="mb-1 fs-12 text-muted">Status :</p> <span :class="'badge '+user.status.color+' '+user.status.others">{{user.status.name}}</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="d-flex mt-4">
+                        <div class="d-flex mt-3">
                             <div class="flex-shrink-0 avatar-xs align-self-center me-3">
                                 <div class="avatar-title bg-light rounded-circle fs-16 text-primary">
-                                    <i class="ri-building-line"></i>
+                                    <i class="ri-building-fill"></i>
                                 </div>
                             </div>
                             <div class="flex-grow-1 overflow-hidden">
-                                <p class="mb-1">School :</p><h6 class="text-truncate mb-0"> {{user.education.school.name}} </h6>
+                                <p class="mb-1 fs-12 text-muted">School :</p><h6 class="text-truncate mb-0"> {{user.education.school.name}} </h6>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="d-flex mt-4">
+                        <div class="d-flex mt-3">
                             <div class="flex-shrink-0 avatar-xs align-self-center me-3">
                                 <div class="avatar-title bg-light rounded-circle fs-16 text-primary">
-                                    <i class="mdi mdi-school-outline"></i></div>
+                                    <i class="mdi mdi-school"></i></div>
                             </div>
                             <div class="flex-grow-1 overflow-hidden">
-                                <p class="mb-1">Course :</p> <h6 class="text-truncate mb-0"> {{user.education.course.name}} </h6>
+                                <p class="mb-1 fs-12 text-muted">Course :</p> <h6 class="text-truncate mb-0"> {{user.education.course.name}} </h6>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="d-flex mt-4">
+                        <div class="d-flex mt-3">
                             <div class="flex-shrink-0 avatar-xs align-self-center me-3">
                                 <div class="avatar-title bg-light rounded-circle fs-16 text-primary">
-                                    <i class="ri-calendar-line"></i></div>
+                                    <i class="ri-calendar-fill"></i></div>
                             </div>
                             <div class="flex-grow-1 overflow-hidden">
-                                <p class="mb-1">Level :</p> <h6 class="text-truncate mb-0"> {{user.education.level.name}} <span class="text-muted fs-11">({{user.education.level.others}})</span></h6>
+                                <p class="mb-1 fs-12 text-muted">Level :</p> <h6 class="text-truncate mb-0"> {{user.education.level.name}} <span class="text-muted fs-11">({{user.education.level.others}})</span></h6>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row gy-3 mt-4">
-                    <div class="col-sm-12" v-for="address in user.addresses" v-bind:key="address.id">
-                        <div class="form-check card-radio">
-                            <label class="form-check-label" for="shippingAddress01">
-                                <span v-if="address.is_permanent" class="mb-2 fw-semibold d-block text-muted text-uppercase">Permanent Address</span>
-                                <span v-else class="mb-2 fw-semibold d-block text-muted text-uppercase">Home Address</span>
-                                <span class="text-muted fw-normal text-wrap mb-1 d-block">{{address.address}}, {{address.municipality.name}}</span>
-                                <span class="text-muted fw-normal d-block">{{address.province.name}}, {{address.region.name}}</span>
-                            </label>
+
+                <div class="col-md-12 mt-4">
+                    <hr class="text-muted"/>
+                    <span class="fw-semibold fs-12">Location Information</span>
+                    <hr class="text-muted"/>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-flex mt-0">
+                            <div class="flex-shrink-0 avatar-xs align-self-center me-3">
+                                <div class="avatar-title bg-light rounded-circle fs-16 text-primary">
+                                    <i class="ri-map-pin-fill"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 overflow-hidden">
+                                <p class="mb-1 fs-12 text-muted">Address :</p>  <h6 class="text-truncate mb-0"> {{(user.address.address) ? user.address.address : 'n/a'}} </h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="d-flex mt-3">
+                            <div class="flex-shrink-0 avatar-xs align-self-center me-3">
+                                <div class="avatar-title bg-light rounded-circle fs-16 text-primary">
+                                    <i class="ri-pushpin-fill"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 overflow-hidden">
+                                <p class="mb-1 fs-12 text-muted">Municipality :</p>  <h6 class="text-truncate mb-0"> {{user.address.municipality.name}} </h6>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-md-12">
+                        <div class="d-flex mt-3">
+                            <div class="flex-shrink-0 avatar-xs align-self-center me-3">
+                                <div class="avatar-title bg-light rounded-circle fs-16 text-primary">
+                                    <i class="ri-road-map-fill"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 overflow-hidden">
+                                <p class="mb-1 fs-12 text-muted">Province :</p>  <h6 class="text-truncate mb-0"> {{user.address.province.name}} </h6>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-md-12">
+                        <div class="d-flex mt-3">
+                            <div class="flex-shrink-0 avatar-xs align-self-center me-3">
+                                <div class="avatar-title bg-light rounded-circle fs-16 text-primary">
+                                    <i class="ri-earth-fill"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 overflow-hidden">
+                                <p class="mb-1 fs-12 text-muted">Region :</p> <h6 class="text-truncate mb-0"> {{user.address.region.name}} </h6>
+                            </div>
                         </div>
                     </div>
                 </div>
+                
+               
             </div> 
             <div class="col-md-9">
                 <div class="border-start p-4 h-100 d-flex flex-column">
@@ -161,7 +213,8 @@ export default {
                     level: {},
                     info: {}
                 },
-                addresses: []
+                addresses: [],
+                address: { municipality: '', province: '', region: ''}
             },
             enrollments: [],
             prospectuses: [],
@@ -173,6 +226,7 @@ export default {
         show(user){
             this.user = user;
             this.prospectuses = this.user.education.info.prospectus;
+            this.user.address = this.user.addresses[0];
             this.fetch();
             this.showModal = true;
         },
