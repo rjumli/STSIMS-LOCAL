@@ -54,8 +54,7 @@ trait Viewing {
             ->whereHas('status',function ($query){
                 $query->where('type','Ongoing');
             })
-            ->paginate($request->counts)
-            ->withQueryString()
+            ->limit(5)->get()
         );
 
         return $data;

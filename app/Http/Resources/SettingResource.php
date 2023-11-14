@@ -11,6 +11,7 @@ class SettingResource extends JsonResource
         return [
             'id' => $this->id,
             'year' => $this->year,
+            'academic_year' => $this->academic_year,
             'information' => json_decode($this->information),
             'signatories' => json_decode($this->signatories),
             'agency' => $this->agency,

@@ -60,9 +60,9 @@ class MonitoringController extends Controller
             default : 
             return inertia('Modules/Monitoring/Index',
             [
-                'statuses1' => $this->statuses(),
-                'checking' => $this->checking($request),
-                'released' => $this->released(),
+                'count_status' => $this->statuses(),
+                'count_checking' => $this->checking($request),
+                'count_released' => $this->released(),
                 'counts' => [
                     'termination' => $this->termination($request),
                     'enrolled' => $this->enrolled($request),

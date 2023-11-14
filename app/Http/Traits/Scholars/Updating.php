@@ -82,14 +82,18 @@ trait Updating {
             foreach($subs as $sub){
                 $semesters = $sub->semesters;
                 foreach($semesters as $semester){
-                    $listahan[] = [
-                        'year' => $sub->year_level,
+                    $listahans[] = [
                         'semester' => $semester->semester,
                         'is_empty' => (count($semester->courses) > 0) ? false : true,
                         'has_enrolled' => false,
                         'is_delayed' => false
                     ];
                 }
+                $listahan[] = [
+                    'year' => $sub->year_level,
+                    'semesters' => $listahans
+                ];
+                $listahans = [];
             }
 
             $lists = [];
