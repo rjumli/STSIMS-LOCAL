@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
 use App\Models\Scholar;
+use App\Models\SchoolCampus;
 use Illuminate\Http\Request;
 use App\Http\Traits\Monitoring\Save;
 use App\Http\Traits\Monitoring\Count;
@@ -11,6 +13,14 @@ use App\Http\Traits\Monitoring\Viewing;
 class MonitoringController extends Controller
 {
     use Count, Viewing, Save; 
+
+    public $code;
+
+    public function __construct()
+    {
+        $setting = Setting::first();
+        $this->code = $setting->agency->region_code;
+    }
 
     public function index(Request $request){
         $type = $request->type;
@@ -71,6 +81,11 @@ class MonitoringController extends Controller
                     'schools' => $this->schools(),
                     'graduating' => [],
                     'total' => Scholar::count()
+                ],
+                'terms' => [
+                    'semester' => SchoolCampus::where('term_id',4)->where('region_code',$this->code)->count(),
+                    'trimester' => SchoolCampus::where('term_id',5)->where('region_code',$this->code)->count(),
+                    'quarter' => SchoolCampus::where('term_id',6)->where('region_code',$this->code)->count(),
                 ]
             ]);
         }

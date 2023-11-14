@@ -15,18 +15,31 @@ class SettingController extends Controller
     public function update(Request $request){
         $data = \DB::transaction(function () use ($request){
             $data = Setting::first();
-            $data->update($request->all());
 
-            if($data){
+            if($request->type == 'year'){
+                $data->year = $request->year;
+                $data->academic_year = $request->academic_year;
+                $data->semester_id = NULL;
+                $data->trimester_id = NULL;
+                $data->quarter_id = NULL;
                 SchoolSemester::query()->update(['is_active' => 0]);
+            }else if($request->type == 'Semester'){
+                $data->semester_id = $request->semester;
+            }else if($request->type == 'Trimester'){
+                $data->trimester_id = $request->semester;
+            }else if($request->type == 'Quarter Term'){
+                $data->quarter_id = $request->semester;
             }
+            $data->save();
+           
             return $data;
         });
         
         return back()->with([
             'message' => 'System configuration updated successfully',
             'data' => $data,
-            'type' => 'bxs-check-circle'
+            'type' => 'bxs-check-circle',
+            'color' => 'success'
         ]);
     }
 }

@@ -15,6 +15,9 @@ class SettingResource extends JsonResource
             'information' => json_decode($this->information),
             'signatories' => json_decode($this->signatories),
             'agency' => $this->agency,
+            'semester' => $this->semester,
+            'trimester' => $this->trimester,
+            'quarter' => $this->quarter,
             'api_key' => $this->api_key
         ];
     }

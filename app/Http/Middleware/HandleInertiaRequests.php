@@ -38,7 +38,7 @@ class HandleInertiaRequests extends Middleware
             ];
         }
 
-        $settings = Setting::with('agency.region')->first();
+        $settings = Setting::with('agency.region','semester','trimester','quarter')->first();
         $region_code = ($settings)? $settings->agency->region_code : NULL;
         $semester_year = ($settings)? $settings->year : NULL;
  

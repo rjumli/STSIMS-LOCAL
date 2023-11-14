@@ -34,22 +34,25 @@
     <hr class="text-muted"/>
 
     <div class="row mt-0 mb-4" style="--vz-gutter-x: 0.6rem;">    
-        <div class="col-sm-12 col-lg-12 mb-2">
+        <div class="col-sm-12 col-lg-12 mb-2" style="cursor: default;">
             <div class="p-2 border border-dashed rounded">
                 <div class="d-flex align-items-center">
-                    <div class="avatar-sm me-2">
+                    <div class="avatar-sm me-2" @click="updateAcademic()" style="cursor: pointer;">
                         <div class="avatar-title rounded bg-transparent text-primary fs-24"><i
                                 class="ri-calendar-fill"></i></div>
                     </div>
                     <div class="flex-grow-1">
                         <p class="text-muted fs-11 mb-0">Academic Year :</p>
-                        <h5 class="fs-16 text-success mb-0">2023-2024</h5>
+                        <h5 class="fs-16 text-success mb-0">{{settings.data.academic_year}}</h5>
+                    </div>
+                    <div class="text-end">
+                        <button @click="monitorSchools()" class="btn btn-light waves-effect waves-light me-3" type="button"><!----><div class="btn-content">Monitor Schools</div></button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
-            <div class="p-2 border border-dashed rounded">
+            <div @click="updateSemester('Semester',terms.semester)" class="p-2 border border-dashed rounded" :style="'cursor:'+ (terms.semester > 0 ? 'pointer' : 'default')">
                 <div class="d-flex align-items-center">
                     <div class="avatar-sm me-2">
                         <div class="avatar-title rounded bg-transparent text-primary fs-24"><i
@@ -57,13 +60,13 @@
                     </div>
                     <div class="flex-grow-1">
                         <p class="text-muted fs-11 mb-1">Semester :</p>
-                        <h5 class="fs-13 mb-0">First Semester</h5>
+                        <h5 class="fs-13 mb-0">{{(settings.data.semester) ? settings.data.semester.name : 'Not Available'}}</h5>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
-            <div class="p-2 border border-dashed rounded">
+            <div @click="updateSemester('Trimester',terms.trimester)" class="p-2 border border-dashed rounded" :style="'cursor:'+ (terms.trimester > 0 ? 'pointer' : 'default')">
                 <div class="d-flex align-items-center">
                     <div class="avatar-sm me-2">
                         <div class="avatar-title rounded bg-transparent text-primary fs-24"><i
@@ -71,13 +74,13 @@
                     </div>
                     <div class="flex-grow-1">
                         <p class="text-muted fs-11 mb-1">Trimester :</p>
-                        <h5 class="fs-13 mb-0">First Quarter</h5>
+                       <h5 class="fs-13 mb-0">{{(settings.data.trimester) ? settings.data.trimester.name : 'Not Available'}}</h5>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
-            <div class="p-2 border border-dashed rounded">
+            <div @click="updateSemester('Quarter Term',terms.quarter)" class="p-2 border border-dashed rounded" :style="'cursor:'+ (terms.quarter > 0 ? 'pointer' : 'default')">
                 <div class="d-flex align-items-center">
                     <div class="avatar-sm me-2">
                         <div class="avatar-title rounded bg-transparent text-primary fs-24"><i class="ri-calendar-2-line"></i>
@@ -85,7 +88,7 @@
                     </div>
                     <div class="flex-grow-1">
                         <p class="text-muted fs-11 mb-1">Quarter Term :</p>
-                        <h5 class="fs-13 mb-0">First Quarter</h5>
+                        <h5 class="fs-13 mb-0">{{(settings.data.quarter) ? settings.data.quarter.name : 'Not Available'}}</h5>
                     </div>
                 </div>
             </div>
@@ -93,11 +96,18 @@
     </div>
     <hr class="text-muted mt-n2"/>
     <View ref="view"/>
+    <Year ref="year"/>
+    <Monitor ref="monitor"/>
+    <Semester ref="semester" :dropdowns="dropdowns"/>
 </template>
 <script>
+import Monitor from '../Middle/Modals/Monitor.vue';
+import Year from '../Middle/Modals/Year.vue';
 import View from '../../Modal/View.vue';
+import Semester from '../Middle/Modals/Semester.vue';
 export default {
-    components: { View },
+    components: { View, Year, Semester, Monitor },
+    props: ['settings','dropdowns','terms'],
     data(){
         return {
             currentUrl: window.location.origin,
@@ -124,6 +134,17 @@ export default {
         },
         showScholar(user){
             this.$refs.view.show(user);
+        },
+        updateAcademic(){
+            this.$refs.year.show();
+        },
+        updateSemester(type,count){
+            if(count > 0){
+                this.$refs.semester.show(type);
+            }
+        },
+        monitorSchools(){
+            this.$refs.monitor.show(this.settings);
         },
         isCustomDropdown() {
             var searchOptions = document.getElementById("search-close-options");

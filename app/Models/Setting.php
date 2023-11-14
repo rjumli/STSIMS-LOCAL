@@ -11,6 +11,7 @@ class Setting extends Model
 
     protected $fillable = [
         'year',
+        'academic_year',
         'signatories',
         'information',
         'semester_id',
@@ -21,6 +22,21 @@ class Setting extends Model
     public function agency()
     {
         return $this->belongsTo('App\Models\ListAgency', 'agency_id', 'id');
+    }
+
+    public function semester()
+    {
+        return $this->belongsTo('App\Models\ListDropdown', 'semester_id', 'id');
+    }
+
+    public function trimester()
+    {
+        return $this->belongsTo('App\Models\ListDropdown', 'trimester_id', 'id');
+    }
+
+    public function quarter()
+    {
+        return $this->belongsTo('App\Models\ListDropdown', 'quarter_id', 'id');
     }
 
 }
