@@ -25,5 +25,4 @@ trait Viewing {
         })->take(5)->get();
         return SearchResource::collection($data);
     }
-
 }

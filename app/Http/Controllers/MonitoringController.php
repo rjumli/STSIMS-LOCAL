@@ -38,6 +38,9 @@ class MonitoringController extends Controller
                 ];
                 return $array;
             break;
+            case 'schoolsemesters':
+                return $this->schoolsemesters($request);
+            break;
             case 'missed':
                 return $this->missed($request);
             break;

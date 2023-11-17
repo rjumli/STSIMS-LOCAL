@@ -55,8 +55,9 @@
             <div @click="updateSemester('Semester',terms.semester)" class="p-2 border border-dashed rounded" :style="'cursor:'+ (terms.semester > 0 ? 'pointer' : 'default')">
                 <div class="d-flex align-items-center">
                     <div class="avatar-sm me-2">
-                        <div class="avatar-title rounded bg-transparent text-primary fs-24"><i
-                                class="ri-calendar-2-line"></i></div>
+                        <div class="avatar-title rounded bg-transparent text-primary fs-24">
+                            <i class="ri-calendar-2-line"></i>
+                        </div>
                     </div>
                     <div class="flex-grow-1">
                         <p class="text-muted fs-11 mb-1">Semester :</p>
