@@ -30,15 +30,79 @@
                 </button>
             </div>
         </form>
+
+        <div class="row mt-3">
+   
+                     
+    <div class="col-sm-6 col-lg-3">
+        <div class="p-2 border border-dashed rounded">
+            <div class="d-flex align-items-center">
+                <div class="avatar-sm me-2">
+                    <div class="avatar-title rounded bg-transparent text-primary fs-24"><i
+                            class="ri-file-copy-2-fill"></i></div>
+                </div>
+                <div class="flex-grow-1">
+                    <p class="text-muted fs-11 mb-1">Schools Status :</p>
+                    <h5 class="fs-13 mb-0">{{schools.length}} <span class="text-success">open</span></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="p-2 border border-dashed rounded">
+            <div class="d-flex align-items-center">
+                <div class="avatar-sm me-2">
+                    <div class="avatar-title rounded bg-transparent text-primary fs-24"><i
+                            class="ri-money-dollar-circle-fill"></i></div>
+                </div>
+                <div class="flex-grow-1">
+                    <p class="text-muted fs-11 mb-1">Financial Status :</p>
+                    <h5 class="fs-13 mb-0">Continued</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="p-2 border border-dashed rounded">
+            <div class="d-flex align-items-center">
+                <div class="avatar-sm me-2">
+                    <div class="avatar-title rounded bg-transparent text-primary fs-24"><i class="ri-stack-fill"></i>
+                    </div>
+                </div>
+                <div class="flex-grow-1">
+                    <p class="text-muted fs-11 mb-1">GWA :</p>
+                    <h5 class="fs-13 mb-0">1.2</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="p-2 border border-dashed rounded">
+            <div class="d-flex align-items-center">
+                <div class="avatar-sm me-2">
+                    <div class="avatar-title rounded bg-transparent text-primary fs-24">
+                        <i class="ri-wallet-3-fill"></i>
+                    </div>
+                </div>
+                <div class="flex-grow-1">
+                    <p class="text-muted fs-11 mb-1">Total Received :</p>
+                    <h5 class="fs-13 mb-0">21</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <hr class="text-muted"/>
+        
         <div class="table-responsive mt-2">
             <table class="table table-nowrap align-middle">
                 <thead class="table-light fs-12">
                     <tr>
-                        <th width="2%">
+                        <th width="3%" class="text-center">
                              <input class="form-check-input fs-16" type="checkbox" value="option" />
                         </th>
-                        <th width="33%">School</th>
-                        <th width="20%" class="text-center">Semester</th>
+                        <th width="35%">School</th>
+                        <th width="17%" class="text-center">Semester</th>
                         <th width="15%" class="text-center">Start At</th>
                         <th width="15%" class="text-center">End At</th>
                         <th width="10%" class="text-center">Status</th>
@@ -47,16 +111,22 @@
                 </thead>
             </table>
         </div>
-        <div class="table-responsive mt-n3" style="height: 75vh; overflow: auto;">
-            <table class="table table-nowrap align-middle">
+        <div class="table-responsive mt-n3" data-simplebar style="height: 62vh; overflow: auto;">
+            <table class="table table-bordered table-nowrap align-middle">
                 <tbody>
-                    <tr v-for="(list,index) in schools" v-bind:key="index" :class="(list.semesters.length == 0) ? 'table-warning' : ''">
-                        <td width="2%"><input type="checkbox" name="chk_child" class="form-check-input" /></td>
-                        <td width="33%" class="fw-semibold">{{list.name}}</td>
-                        <td width="20%"></td>
-                        <td width="15%"></td>
-                        <td width="15%"></td>
-                        <td width="10%"></td>
+                    <!-- :class="(list.academic_year == '-') ? 'table-warning' : ''" -->
+                    <tr v-for="(list,index) in schools" v-bind:key="index">
+                        <td width="3%" class="text-center">
+                            <input type="checkbox" name="chk_child" class="form-check-input" />
+                        </td>
+                        <td width="35%" class="fw-semibold">{{list.name}}</td>
+                        <td width="17%" class="text-center">{{list.academic_year}}</td>
+                        <td width="15%" class="text-center">{{list.start}}</td>
+                        <td width="15%" class="text-center">{{list.end}}</td>
+                        <td width="10%" class="text-center">
+                            <b-badge v-if="list.status" variant="success">Open</b-badge>
+                            <b-badge v-else variant="danger">Close</b-badge>
+                        </td>
                         <td width="5%"></td>
                     </tr>
                 </tbody>

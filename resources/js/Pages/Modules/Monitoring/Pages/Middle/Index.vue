@@ -46,7 +46,7 @@
                         <h5 class="fs-16 text-success mb-0">{{settings.data.academic_year}}</h5>
                     </div>
                     <div class="text-end">
-                        <button @click="monitorSchools()" class="btn btn-light waves-effect waves-light me-3" type="button"><!----><div class="btn-content">Monitor Schools</div></button>
+                        <b-button @click="monitorSchools()" variant="light" class="btn-label waves-effect waves-light"><i class="bx bxs-webcam label-icon align-middle fs-16 me-2"></i> Monitor Schools</b-button>
                     </div>
                 </div>
             </div>
@@ -96,6 +96,28 @@
         </div>
     </div>
     <hr class="text-muted mt-n2"/>
+    <ul class="nav nav-pills nav-justified nav-custom nav-custom-light small" role="tablist">
+        <li class="nav-item">
+            <b-link class="nav-link" data-bs-toggle="tab" href="#home" role="tab">
+                Home
+            </b-link>
+        </li>
+        <li class="nav-item">
+            <b-link class="nav-link" data-bs-toggle="tab" href="#benefits" role="tab">
+                Batches
+            </b-link>
+        </li>
+        <li class="nav-item">
+            <b-link class="nav-link" data-bs-toggle="tab" href="#enrollments" role="tab">
+                Programs
+            </b-link>
+        </li>
+        <li class="nav-item">
+            <b-link class="nav-link" data-bs-toggle="tab" href="#nav-light-messages" role="tab">
+                Graduates
+            </b-link>
+        </li>
+    </ul>
     <View ref="view"/>
     <Year ref="year"/>
     <Monitor ref="monitor"/>

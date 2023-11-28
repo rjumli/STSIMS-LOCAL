@@ -106,6 +106,53 @@
 </template>
 <script>
 export default {
-    props: ['role']
+    props: ['role'],
+    mounted() {
+        window.addEventListener('keydown', this.handleKeyPress);
+    },
+    destroyed() {
+        window.removeEventListener('keydown', this.handleKeyPress);
+    },
+    methods: {
+        handleKeyPress(event) {
+            if (event.altKey) {
+                switch (event.key) {
+                    case '1':
+                    this.$inertia.visit('/home');
+                    break;
+                    case '2':
+                    this.$inertia.visit('/monitoring');
+                    break;
+                    case '3':
+                    this.$inertia.visit('/schools');
+                    break;
+                    case '4':
+                    this.$inertia.visit('/qualifiers');
+                    break;
+                    case '5':
+                    this.$inertia.visit('/scholars');
+                    break;
+                    case '6':
+                    this.$inertia.visit('/enrollments');
+                    break;
+                    case '7':
+                    this.$inertia.visit('/financial-benefits');
+                    break;
+                    case '8':
+                    this.$inertia.visit('/accounting');
+                    break;
+                    case '9':
+                    this.$inertia.visit('/insights');
+                    break;
+                    case '10':
+                    this.$inertia.visit('/staffs');
+                    break;
+                    case '11':
+                    this.$inertia.visit('/setting');
+                    break;
+                }
+            }
+        },
+    },
 }
 </script>

@@ -8,6 +8,7 @@ use App\Models\ScholarAddress;
 use App\Models\ScholarEducation;
 use App\Models\ScholarProfile;
 use App\Models\SchoolCampus;
+use App\Http\Resources\DefaultResource;
 use App\Http\Resources\Scholar\SearchResource;
 use App\Http\Resources\Scholar\IndexResource;
 use App\Http\Resources\Scholar\Info\ListResource;
@@ -123,7 +124,7 @@ trait Viewing {
 
     public static function schoolsemesters($request){
         $data = SchoolCampus::with('school')->with(['semesters' => function ($query) {
-            $query->where('is_active', 1);
+            $query->with('semester')->where('is_active', 1)->first();
         }])->get();
         return SchoolResource::collection($data);
     }
